@@ -1,14 +1,24 @@
 package com.cursoudemy.cursoUdemy.entities;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 import java.io.Serializable;
 import java.util.Objects;
 
 public class User implements Serializable {
 
+<<<<<<< HEAD
 
     private static final long serialVersionUID = 1L;
 
+=======
+    private static final long serialVersionUID = 1L;
+
+
+>>>>>>> main
     private Long id;
     private String name;
     private String email;
@@ -34,6 +44,7 @@ public class User implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public String getEmail() {
         return email;
     }
@@ -42,6 +53,8 @@ public class User implements Serializable {
         this.email = email;
     }
 
+=======
+>>>>>>> main
     public String getName() {
         return name;
     }
@@ -50,6 +63,17 @@ public class User implements Serializable {
         this.name = name;
     }
 
+<<<<<<< HEAD
+=======
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+>>>>>>> main
     public String getPhone() {
         return phone;
     }

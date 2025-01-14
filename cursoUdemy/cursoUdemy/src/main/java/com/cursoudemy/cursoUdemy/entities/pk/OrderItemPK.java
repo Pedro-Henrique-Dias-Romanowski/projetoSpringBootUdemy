@@ -1,10 +1,8 @@
 package com.cursoudemy.cursoUdemy.entities.pk;
-
 import com.cursoudemy.cursoUdemy.entities.Order;
 import com.cursoudemy.cursoUdemy.entities.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 import java.io.Serializable;

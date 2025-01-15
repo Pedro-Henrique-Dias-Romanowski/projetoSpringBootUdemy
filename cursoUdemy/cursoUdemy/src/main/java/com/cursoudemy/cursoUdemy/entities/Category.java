@@ -1,7 +1,4 @@
 package com.cursoudemy.cursoUdemy.entities;
-
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

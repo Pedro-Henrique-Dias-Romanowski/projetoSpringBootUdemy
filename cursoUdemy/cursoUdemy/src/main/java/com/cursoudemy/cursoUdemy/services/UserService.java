@@ -30,4 +30,9 @@ public class UserService {
     public void delete(Long id){
         repository.deleteById(id);
     }
+
+    public User upadte( Long id ,User user){
+        user.setId(id);
+        return repository.save(user);
+    }
 }

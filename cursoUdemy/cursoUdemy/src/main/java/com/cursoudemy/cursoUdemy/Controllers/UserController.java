@@ -52,23 +52,30 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         try{
-            service.delete(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            List<User> users = service.findAll();
+            if (users.isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            } else {
+                service.delete(id);
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
-//        try{
-//            User newUser = service.save(user);
-//            newUser.setId(id);
-//            return ResponseEntity.ok().body(newUser);
-//        } catch (Exception e){
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//        }
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
+        try{
+            List<User> users = service.findAll();
+            if (users.isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            } else {
+                User updateUser = service.upadte(id, user);
+                return updateUser != null ? ResponseEntity.ok().body(updateUser) : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }

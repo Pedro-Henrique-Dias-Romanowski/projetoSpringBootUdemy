@@ -2,7 +2,11 @@ package com.cursoudemy.cursoUdemy.services;
 
 import com.cursoudemy.cursoUdemy.entities.User;
 import com.cursoudemy.cursoUdemy.repositories.UserRepository;
+import com.cursoudemy.cursoUdemy.services.exceptions.DataBaseException;
+import com.cursoudemy.cursoUdemy.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,12 +32,19 @@ public class UserService {
         return repository.save(user);
     }
 
-    public void delete(Long id){
-        repository.deleteById(id);
+    public void delete(Long id) {
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e){
+            throw  new DataBaseException(e.getMessage());
+        }
     }
 
-    public User upadte(Long id ,User user){
+    public User upadte (Long id, User user){
         user.setId(id);
         return repository.save(user);
     }
+
 }

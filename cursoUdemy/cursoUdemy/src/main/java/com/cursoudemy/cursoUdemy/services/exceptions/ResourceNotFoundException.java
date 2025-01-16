@@ -1,4 +1,4 @@
-package com.cursoudemy.cursoUdemy.services;
+package com.cursoudemy.cursoUdemy.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

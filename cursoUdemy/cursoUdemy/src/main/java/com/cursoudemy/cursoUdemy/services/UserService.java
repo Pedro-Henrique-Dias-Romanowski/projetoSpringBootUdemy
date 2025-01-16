@@ -19,8 +19,9 @@ public class UserService {
         return repository.findAll();
     }
 
-    public Optional<User> findById(Long id){
-        return repository.findById(id);
+    public User findById(Long id){
+        Optional<User> user = repository.findById(id);
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User save(User user){
@@ -31,7 +32,7 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public User upadte( Long id ,User user){
+    public User upadte(Long id ,User user){
         user.setId(id);
         return repository.save(user);
     }

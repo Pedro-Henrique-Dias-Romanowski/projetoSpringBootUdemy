@@ -31,12 +31,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
-        try {
-            Optional<User> user = service.findById(id);
-            return ResponseEntity.ok().body(user.get());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+            User user = service.findById(id);
+            return ResponseEntity.ok().body(user);
     }
 
     @PostMapping("/save")

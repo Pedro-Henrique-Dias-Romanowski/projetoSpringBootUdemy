@@ -47,17 +47,12 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        try{
-            List<User> users = service.findAll();
-            if (users.isEmpty()){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-            } else {
-                service.delete(id);
+            service.delete(id);
+            if(service.findById(id) != null){
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             }
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
     }
 
     @PutMapping("/{id}")
